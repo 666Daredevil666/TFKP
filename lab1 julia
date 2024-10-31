@@ -1,4 +1,13 @@
-# Функция для вычисления заполненного множества Жюлиа
+# Импорт необходимых библиотек
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Повторная инициализация параметров
+width, height = 800, 800
+xmin, xmax, ymin, ymax = -2.0, 2.0, -2.0, 2.0
+max_iter = 100
+
+# Функция для вычисления множества Жюлиа
 def julia(z, c, max_iter):
     for n in range(max_iter):
         if abs(z) > 2:
@@ -8,7 +17,6 @@ def julia(z, c, max_iter):
 
 # Параметры для визуализации множества Жюлиа
 c_julia = complex(-0.5251993, 0.5251993)  # фиксированное значение параметра c
-max_iter = 100  # ограничение на количество итераций
 
 # Создание изображения множества Жюлиа
 julia_set = np.zeros((width, height))
