@@ -1,0 +1,30 @@
+# Функция для вычисления заполненного множества Жюлиа
+def julia(z, c, max_iter):
+    for n in range(max_iter):
+        if abs(z) > 2:
+            return n
+        z = z**2 + c
+    return max_iter
+
+# Параметры для визуализации множества Жюлиа
+c_julia = complex(-0.5251993, 0.5251993)  # фиксированное значение параметра c
+max_iter = 100  # ограничение на количество итераций
+
+# Создание изображения множества Жюлиа
+julia_set = np.zeros((width, height))
+for x in range(width):
+    for y in range(height):
+        # Перевод координат в комплексную плоскость
+        real = xmin + (x / width) * (xmax - xmin)
+        imag = ymin + (y / height) * (ymax - ymin)
+        z = complex(real, imag)
+        julia_set[x, y] = julia(z, c_julia, max_iter)
+
+# Отображение множества Жюлиа
+plt.figure(figsize=(10, 10))
+plt.imshow(julia_set.T, extent=(xmin, xmax, ymin, ymax), cmap='twilight', interpolation='bilinear')
+plt.colorbar(label='Number of iterations')
+plt.title(f"Julia Set Visualization for c = {c_julia}")
+plt.xlabel("Re(z)")
+plt.ylabel("Im(z)")
+plt.show()
